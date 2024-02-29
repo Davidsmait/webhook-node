@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "NGROK_AUTHTOKEN=2d3ncWPNAYbC8IYbrxbcPaCk2gd_4Ey1BQ6zzGnE44FhadFyH node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@ngrok/ngrok": "^1.1.0",
     "express": "^4.18.2"
   }
 }
