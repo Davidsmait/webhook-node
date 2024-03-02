@@ -14,7 +14,21 @@ app.post("/hook", (req, res) => {
 });
 
 app.get("/events", (req, res) => {
-    return res.json(events).status(200);
+    let mode = req.query["hub.mode"];
+    let token = req.query["hub.verify_token"];
+    let challenge = req.query["hub.challenge"];
+    console.log("challenge: ", challenge)
+    if (mode && token) {
+        // Check the mode and token sent is coçrrect
+        if (mode === "subscribe" ) {
+            // Respond with the challenge token from the request
+            console.log("WEBHOOK_VERIFIED");
+            res.status(200).send(challenge);
+        } else {
+            // Respond with '403 Forbidden' if verify tokens do not match
+            res.sendStatus(403);
+        }
+    }
 });
 
 app.listen(port, () => {
