@@ -20,7 +20,9 @@ app.get("/events", (req, res) => {
     let mode = req.query["hub.mode"];
     let token = req.query["hub.verify_token"];
     let challenge = req.query["hub.challenge"];
+    
     console.log("challenge: ", challenge)
+    console.log("eventos : ", events);
     if (mode && token) {
         // Check the mode and token sent is coçrrect
         if (mode === "subscribe" ) {
@@ -32,6 +34,7 @@ app.get("/events", (req, res) => {
             res.sendStatus(403);
         }
     }
+    res.send(events)
 });
 
 app.listen(port, () => {
