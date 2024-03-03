@@ -11,6 +11,7 @@ let events = [];
 
 app.post("/hook", (req, res) => {
     console.log("Capture event of Github WebHook");
+    console.log(":D");
     events.push(req.body);
     return res.status(200).end();
 });
