@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const bodyParser = require('body-parser')
 const port = 3000;
+const ngrok = require('@ngrok/ngrok');
+
 
 app.use(express.json());
 
@@ -34,3 +36,9 @@ app.get("/events", (req, res) => {
 app.listen(port, () => {
     console.log(`Server listen on http://localhost:${port}`);
 });
+
+// Get your endpoint online
+ngrok.connect({ addr: port, authtoken_from_env: true })
+    .then(listener => console.log(`Ingress established at: ${listener.url()}`));
+
+
